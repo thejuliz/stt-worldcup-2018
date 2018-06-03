@@ -14,7 +14,7 @@ class GroupMatchesModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isShow) {
+        if (!this.props.isShow && nextProps.isShow) {
             this.props.retrieveQualifierGroupMatches(this.props.groupId);
         }
     }
