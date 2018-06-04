@@ -6,21 +6,13 @@ import Routes from './routes'
 class CoreLayout extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isReady: false
-        }
     }
     componentWillMount() {
         const wcPromise = this.props.retrieveWorldCupData();
         const predPromise = this.props.retrievePredictionsByUserId(1);
-        Promise.all([wcPromise, predPromise]).then(() => {
-            this.setState({
-                isReady: true
-            })
-        })
     }
     render() {
-        if(this.state.isReady){
+        if(this.props.isReady){
             return (
                 <Routes/>
             )
@@ -28,7 +20,9 @@ class CoreLayout extends React.Component {
         return null;
     }
 }
-const mapStateToProps = () => ({})
+const mapStateToProps = (state) => ({
+    isReady: state.worldcup.isLoaded
+})
 
 const mapDispatchToProps = dispatch => ({
     retrieveWorldCupData: () => dispatch(retrieveWorldCupData()),

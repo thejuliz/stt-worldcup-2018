@@ -83,7 +83,7 @@ const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
 }
 const createDummyTeamForDisplay = () => ({
     name: 'TBA',
-    emojiString: '\xE2\x9D\x94'
+    emojiString: '\u2754'
 });
 
 const compareFixtures = (a, b) => {

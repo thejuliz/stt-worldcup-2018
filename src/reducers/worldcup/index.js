@@ -5,7 +5,8 @@ import {
 import update from 'immutability-helper'
 
 const initialState = {
-    worldCupData: {}  
+    worldCupData: {},
+    isLoaded: false
 }
 
 const worldCupReducer = (state = initialState, action) => {
@@ -14,6 +15,9 @@ const worldCupReducer = (state = initialState, action) => {
             return update(state, {
                 worldCupData: {
                     $set: action.worldCupData
+                },
+                isLoaded: {
+                    $set: true
                 }
             });
                 

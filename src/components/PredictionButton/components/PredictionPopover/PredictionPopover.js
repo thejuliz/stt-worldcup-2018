@@ -32,18 +32,18 @@ class PredictionPopover extends React.Component {
         if (this.props.type === 'group') {
             return (
                 <div>
-                    <Button onClick={() => this.makePrediction(PredictionType.HomeWin)}>Home Win</Button>
-                    <Button onClick={() => this.makePrediction(PredictionType.Draw)}>Draw</Button>
-                    <Button onClick={() => this.makePrediction(PredictionType.AwayWin)}>Away Win</Button>
+                    <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.HomeWin)}>Home Win</Button>
+                    <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.Draw)}>Draw</Button>
+                    <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.AwayWin)}>Away Win</Button>
                 </div>
             )
         }
         return (
             <div>
-                <Button onClick={() => this.makePrediction(PredictionType.HomeWin)}>Home Win</Button>
-                <Button onClick={() => this.makePrediction(PredictionType.HomeWinPenalty)}>Home Win (Pen.)</Button>
-                <Button onClick={() => this.makePrediction(PredictionType.AwayWin)}>Away Win</Button>
-                <Button onClick={() => this.makePrediction(PredictionType.AwayWinPenalty)}>Away Win (Pen.)</Button>
+                <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.HomeWin)}>Home Win</Button>
+                <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.HomeWinPenalty)}>Home Win (Pen.)</Button>
+                <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.AwayWin)}>Away Win</Button>
+                <Button bsSize='sm' onClick={() => this.makePrediction(PredictionType.AwayWinPenalty)}>Away Win (Pen.)</Button>
             </div>
         )
     }

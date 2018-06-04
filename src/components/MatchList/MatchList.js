@@ -1,12 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap'
+import moment from 'moment'
 import Moment from 'react-moment'
 import classNames from 'classnames'
 import DateLabel from 'components/DateLabel';
 import TeamLabel from 'components/TeamLabel';
 import PredictionButton from 'components/PredictionButton';
 import './MatchList.css'
+
+const compareFixturesByDate = (a,b) => {
+    return moment(a.date) - moment(b.date)
+}
 class MatchList extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +27,7 @@ class MatchList extends React.Component {
                     <Col md={3}>Away Team</Col>
                     <Col md={2}>Your Prediction</Col>
                 </Row>
-                {this.props.matches.map(this.renderMatch)}
+                {this.props.matches.sort(compareFixturesByDate).map(this.renderMatch)}
             </Grid>
         )
     }
