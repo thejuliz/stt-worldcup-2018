@@ -7,16 +7,9 @@ const orderTeamsBasedOnResult = (teamsWithResult) => {
 }
 const mapStateToProps = (state, props) => {
     const { groupId } = props;
-    const { groups } = state.qualifier;
-    // let groupName = "Group Unknown";
-    // let teams = [];
-    // if (groupId in groups) {
-    //     groupName = groups[groupId].groupName;
-    //     teams = groups[groupId].teams
-    // }
+    const { groups } = state.worldcup.worldCupData;
     return ({
         group: groups[groupId]
-        //sortedTeamsWitResult: orderTeamsBasedOnResult(teams)
     });
 }
 

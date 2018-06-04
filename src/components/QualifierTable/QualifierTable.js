@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'react-bootstrap'
+import { Table, Button } from 'react-bootstrap'
 import GroupMatchesModal from './components/GroupMatchesModal';
-
+import TeamLabel from 'components/TeamLabel';
+import './QualifierTable.css'
 class QualifierTable extends React.Component {
     constructor(props) {
         super(props)
@@ -10,19 +11,10 @@ class QualifierTable extends React.Component {
         this.closeMatchesModal = this.closeMatchesModal.bind(this);
         this.state = {
             groupName: 'Group Z',
-            sortedTeamsWitResult: [],
             isShowMatchesModal: false
         }
     }
-    componentWillMount(){
-        this.props.retrieveQualifierGroupInfo(this.props.groupId)
-    }
-    componentWillReceiveProps(nextProps) {
-        const { groupId, group } = nextProps;
-        console.log('a', group)
-        this.state.sortedTeamsWitResult = group.teams;
-        this.state.groupName = group.groupName
-    }
+    
     showMatchesModal() {
         this.setState({
             isShowMatchesModal: true
@@ -35,14 +27,16 @@ class QualifierTable extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h4>{this.state.groupName}</h4>
-                <span onClick={this.showMatchesModal}>View matches</span>
+            <div className='qualifier-table'>
+                <div>
+                    <span className='group-name'>{this.props.group.name}</span>
+                    <Button className='pull-right' bsSize='sm' onClick={this.showMatchesModal}>View matches</Button>
+                </div>
                 <Table className={'small'}>
                     <thead>
                         <tr>
                             <th>Team</th>
-                            <th>Played</th>
+                            <th>Pl'd</th>
                             <th>Win</th>
                             <th>Draw</th>
                             <th>Lose</th>
@@ -64,9 +58,9 @@ class QualifierTable extends React.Component {
     renderTeamInGroup() {
         return (
             <tbody>
-            { this.state.sortedTeamsWitResult.map((result)=> {
+            { this.props.group.teams.map((result)=> {
                 return (<tr>
-                    <td>{result.teamName}</td>
+                    <td><TeamLabel team={result} /></td>
                     <td>{result.played}</td>
                     <td>{result.win}</td>
                     <td>{result.draw}</td>
@@ -81,7 +75,7 @@ class QualifierTable extends React.Component {
 }
 
 QualifierTable.propTypes = {
-    groupId: PropTypes.number.isRequired,
+    groupId: PropTypes.string.isRequired,
     group: PropTypes.object.isRequired
 }
 QualifierTable.defaultProps = {

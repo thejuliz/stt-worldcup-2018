@@ -1,4 +1,9 @@
 
 .match-list {
-    font-size: 10px
+    font-size: 14px
+}
+.match-list .fixture-header {
+    text-align: center;
+    font-weight: bold;
+    
 }

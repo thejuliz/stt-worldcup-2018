@@ -10,7 +10,8 @@ import { Route } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import thunk from 'redux-thunk';
 import reducers from './reducers' // Or wherever you keep your reducers
-import Routes from './routes'
+import CoreLayout from './CoreLayout';
+
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
 
@@ -34,7 +35,7 @@ export default () => (
   <Provider store={store}>
     { /* ConnectedRouter will use the store from Provider automatically */ }
     <ConnectedRouter history={history}>
-      <Routes/>
+      <CoreLayout/>
     </ConnectedRouter>
   </Provider>
 )

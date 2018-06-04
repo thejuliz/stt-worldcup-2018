@@ -1,0 +1,7 @@
+.prediction-button > span{
+    font-size: 14px;
+    font-weight:bold;
+}
+.prediction-button {
+    position: relative;
+}
