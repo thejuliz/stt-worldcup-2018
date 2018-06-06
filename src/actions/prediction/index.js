@@ -34,9 +34,10 @@ export const makePrediction = (userId, match_name, prediction) => {
             userId,
             prediction
         });
-        return predict(userId, match_name, prediction).then(prediction => {
+        return predict(userId, match_name, prediction).then((match_id, prediction) => {
             dispatch({
                 type: PRED_MAKE_SUCCESS,
+                match_id,
                 prediction
             })
         })

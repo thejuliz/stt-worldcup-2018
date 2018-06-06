@@ -2,10 +2,11 @@ import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import QualifierTable from 'components/QualifierTable'
 import PageTitle from 'components/PageTitle'
+
 class QualifierView extends React.Component {
     render() {
         return (
-            <div>
+            <div className="container">
             <PageTitle>Qualifier Round</PageTitle>
             <Grid>
                 <Row>

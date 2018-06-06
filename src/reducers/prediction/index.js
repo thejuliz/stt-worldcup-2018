@@ -18,22 +18,27 @@ const predictionReducer = (state = initialState, action) => {
                 myPredictions: action.predictions
             };
         case PRED_MAKE_SUCCESS:
-            console.log(action.prediction.match_name);
-            console.log(state.myPredictions);
-            const oldPredictionIdx = state.myPredictions.findIndex(x=>x.match_name === action.prediction.match_name)
-            console.log(oldPredictionIdx);
+            const oldPredictionIdx = state.myPredictions.findIndex(x=>x.match_id === action.match_id)
             if(oldPredictionIdx > -1) {
                 return update(
                     state, { 
                     myPredictions: {
-                        [oldPredictionIdx]: { $set: action.prediction }
+                        [oldPredictionIdx]: { 
+                            $set: {
+                                prediction: action.prediction, 
+                                match_id: action.match_id
+                            } 
+                        }
                     }
                 });
             }
             return update(
                 state, {
                 myPredictions: {
-                    $push: [action.prediction]
+                    $push: [{ 
+                        prediction: action.prediction, 
+                        match_id: action.match_id
+                    }]
                 }
             });
                 

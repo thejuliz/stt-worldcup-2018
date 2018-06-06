@@ -5,3 +5,6 @@
 .prediction-button {
     position: relative;
 }
+.prediction-button .btn.predicted {
+    font-weight: bold
+}

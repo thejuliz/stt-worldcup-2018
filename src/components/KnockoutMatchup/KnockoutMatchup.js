@@ -14,7 +14,7 @@ class KnockoutMatchup extends React.Component {
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
-                            <th colspan='3'>
+                            <th colSpan='3'>
                                 {round}
                                 <div>
                                 <DateLabel className='small' date={match.date} />
@@ -22,17 +22,21 @@ class KnockoutMatchup extends React.Component {
                             </th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td colspan='2'> <TeamLabel team={home_team_info} /></td>
-                        <td><div className='pull-right'>{home_result || '-'}</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan='2'> <TeamLabel team={away_team_info} /></td>
-                        <td><div className='pull-right'>{away_result || '-'}</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan='3' style={{ padding: 0}}><PredictionButton match={match} /></td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td colSpan='2'> <TeamLabel team={home_team_info} /></td>
+                            <td><div className='pull-right'>{home_result || '-'}</div></td>
+                        </tr>
+                        <tr>
+                            <td colSpan='2'> <TeamLabel team={away_team_info} /></td>
+                            <td><div className='pull-right'>{away_result || '-'}</div></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colSpan='3' style={{ padding: 0}}><PredictionButton match={match} /></td>
+                        </tr>
+                    </tfoot>
                 </Table>
             </div>
         )

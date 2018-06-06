@@ -22,9 +22,9 @@ export const fetchPredictionsByUserIdStub = (userId) => {
         { match_name: 12, prediction: 'away' },
         { match_name: 13, prediction: 'away' },
         { match_name: 49, prediction: 'away' },
-        { match_name: 50, prediction: 'away_p' },
-        { match_name: 51, prediction: 'home_p' },
-        { match_name: 52, prediction: 'home_p' },
+        { match_name: 50, prediction: 'awayp' },
+        { match_name: 51, prediction: 'homep' },
+        { match_name: 52, prediction: 'homep' },
         { match_name: 54, prediction: 'home' },
         { match_name: 55, prediction: 'draw' }]
     );
@@ -47,7 +47,10 @@ export const predict = (user_id, match_id, prediction) => {
         mode: 'cors', // no-cors, cors, *same-origin
         referrer: 'no-referrer', // *client, no-referrer
     }).then((response) => {
-        return response.json();
+        return response.json().map(x=> ({
+            match_name: x.match_id,
+            prediction: x.prediction
+        }));
     });
 }
 

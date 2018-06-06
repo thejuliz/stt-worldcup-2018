@@ -4,9 +4,9 @@ import classNames from 'classnames'
 class TeamLabel extends React.Component {
     render() {
         return (
-            <div
+            <span
                 className={classNames('team-label', this.props.className)}
-            >{this.props.team.emojiString} {this.props.team.name}</div>
+            >{this.props.team.emojiString} {this.props.team.name}</span>
         )
     }
 }

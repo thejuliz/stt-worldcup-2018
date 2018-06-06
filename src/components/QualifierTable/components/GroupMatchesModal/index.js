@@ -11,7 +11,6 @@ const mapStateToProps = (state, props) => {
         //sortedTeamsWitResult: orderTeamsBasedOnResult(teams)
     });
 }
-console.log(retrieveQualifierGroupMatches)
 const mapDispatchToProps = dispatch => ({
     retrieveQualifierGroupMatches: groupId => dispatch(retrieveQualifierGroupMatches(groupId))
 });

@@ -19,10 +19,10 @@ class AbsolutePositionContainer extends React.Component {
 }
 
 AbsolutePositionContainer.propTypes = {
-    left: PropTypes.number.isRequired,
-    top: PropTypes.number.isRequired,
-    containerWidth: PropTypes.number.isRequired,
-    containerHeight: PropTypes.number.isRequired
+    left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
 export default AbsolutePositionContainer;

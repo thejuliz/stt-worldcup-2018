@@ -137,7 +137,7 @@ KnockoutWallchart.propTypes = {
     round_16: PropTypes.object.isRequired,
     round_8: PropTypes.object.isRequired,
     round_4: PropTypes.object.isRequired,
-    round_2_lose: PropTypes.object.isRequired,
+    round_2_loser: PropTypes.object.isRequired,
     round_2: PropTypes.object.isRequired,
 }
 export default KnockoutWallchart;

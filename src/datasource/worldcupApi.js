@@ -2,7 +2,6 @@ export const fetchWorldCupData = () => {
     return fetch('https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json').then((response) => { 
         return response.json() 
     }).then((data) => {
-        console.log(data)
         return {
             teams: data.teams,
             groups: processGroupInfo(data.teams, data.groups),
@@ -14,7 +13,6 @@ export const fetchWorldCupData = () => {
 
 
 const processGroupInfo = (teams, groups) => {
-    console.log(groups)
     Object.keys(groups).forEach((groupId) => {
         groups[groupId].teams = []
         groups[groupId].matches.forEach((match) => {
@@ -67,7 +65,6 @@ const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
             groupTeam.goalAgainst += againstResult;
         }
     } else {
-        console.log('create')
         // Create
         group.teams.push({
             ...team,

@@ -2,8 +2,9 @@ import React from 'react'
 import FixtureList from './components/FixtureList'
 class FixtureView extends React.Component {
     render() {
-        return (<div>
-            <FixtureList />
+        return (
+            <div className="container">
+                <FixtureList />
             </div>
         )
     }

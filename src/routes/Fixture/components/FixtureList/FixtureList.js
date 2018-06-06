@@ -37,17 +37,17 @@ class FixtureList extends React.Component {
         return (
             <div>
                 <h4>Qualifier Round</h4>
-            <MatchList matches={this.getQualifierRoundMatches()} />
-            <h4>{this.props.knockout.round_16.name}</h4>
-            <MatchList matches={this.getRound16Matches()} />
-            <h4>{this.props.knockout.round_8.name}</h4>
-            <MatchList matches={this.getRound8Matches()} />
-            <h4>{this.props.knockout.round_4.name}</h4>
-            <MatchList matches={this.getRound4Matches()} />
-            <h4>{this.props.knockout.round_2_loser.name}</h4>
-            <MatchList matches={this.getRound2LoserMatches()} />
-            <h4>{this.props.knockout.round_2.name}</h4>
-            <MatchList matches={this.getRound2Matches()} />
+                <MatchList matches={this.getQualifierRoundMatches()} />
+                <h4>{this.props.knockout.round_16.name}</h4>
+                <MatchList matches={this.getRound16Matches()} />
+                <h4>{this.props.knockout.round_8.name}</h4>
+                <MatchList matches={this.getRound8Matches()} />
+                <h4>{this.props.knockout.round_4.name}</h4>
+                <MatchList matches={this.getRound4Matches()} />
+                <h4>{this.props.knockout.round_2_loser.name}</h4>
+                <MatchList matches={this.getRound2LoserMatches()} />
+                <h4>{this.props.knockout.round_2.name}</h4>
+                <MatchList matches={this.getRound2Matches()} />
             </div>
         );
     }
