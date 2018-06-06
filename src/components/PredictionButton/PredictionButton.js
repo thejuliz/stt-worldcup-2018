@@ -29,7 +29,7 @@ class PredictionButton extends React.Component {
         return (
             <div className="prediction-button">
                 <Row>
-                    <Col md='12' className='text-center small'>
+                    <Col md={12} className='text-center small'>
                         <Button bsSize='sm' className='form-control' onClick={this.togglePopover}>
                         {this.renderPredictionLabel()}
                         </Button>
@@ -54,8 +54,7 @@ class PredictionButton extends React.Component {
 }
 
 PredictionButton.propTypes = {
-    match: PropTypes.object.isRequired,
-    currentPrediction: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired
 }
 
 export default PredictionButton

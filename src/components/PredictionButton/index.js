@@ -5,7 +5,7 @@ import PredictionButton from './PredictionButton';
 const mapStateToProps = (state, props) => {
     const { match } = props;
     const { myPredictions } = state.prediction;
-    const predictionObj = myPredictions.find(x => x.match_name === match.name)
+    const predictionObj = myPredictions.find(x => x.match_id === match.name)
     return ({
         currentPrediction: predictionObj ? predictionObj.prediction: null
     });

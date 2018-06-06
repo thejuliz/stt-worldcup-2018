@@ -34,7 +34,7 @@ class MatchList extends React.Component {
     renderMatch(match) {
         return (
            
-                <Row>
+                <Row key={match.name}>
                     <Col md={2}><DateLabel date={match.date}/></Col>
                     <Col md={3}><TeamLabel className="pull-right" team={match.home_team_info} /></Col>
                     

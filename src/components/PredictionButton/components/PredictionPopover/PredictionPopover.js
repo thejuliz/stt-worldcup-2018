@@ -50,8 +50,8 @@ class PredictionPopover extends React.Component {
 }
 
 PredictionPopover.propTypes = {
-    matchName: PropTypes.string.isRequired,
-    isShow: PropTypes.boolean,
+    matchName: PropTypes.number.isRequired,
+    isShow: PropTypes.bool,
     popoverTarget: PropTypes.object,
     onClose: PropTypes.func,
     type: PropTypes.oneOf(['group', 'knockout'])
