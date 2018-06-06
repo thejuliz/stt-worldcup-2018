@@ -8,7 +8,7 @@ class PredictionPopover extends React.Component {
         this.makePrediction = this.makePrediction.bind(this);
     }
     makePrediction(prediction) {
-        this.props.makePrediction(1, this.props.matchName, prediction)
+        this.props.makePrediction('1792', this.props.matchName, prediction)
         this.props.onClose();
     }
     render() {

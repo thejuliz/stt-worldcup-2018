@@ -30,10 +30,14 @@ export const fetchPredictionsByUserIdStub = (userId) => {
     );
 }
 
-export const predict = (data) => {
+export const predict = (user_id, match_id, prediction) => {
     // data should be {match_id, home_result, away_result, user_id}
     return fetch('https://stt-worldcup-server.herokuapp.com/predict', {
-        body: JSON.stringify(data), // must match 'Content-Type' header
+        body: JSON.stringify({
+            match_id,
+            prediction,
+            user_id
+        }), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'include', // include, same-origin, *omit
         headers: {

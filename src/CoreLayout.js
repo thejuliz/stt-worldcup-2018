@@ -9,7 +9,7 @@ class CoreLayout extends React.Component {
     }
     componentWillMount() {
         const wcPromise = this.props.retrieveWorldCupData();
-        const predPromise = this.props.retrievePredictionsByUserId(1);
+        const predPromise = this.props.retrievePredictionsByUserId('1792');
     }
     render() {
         if(this.props.isReady){

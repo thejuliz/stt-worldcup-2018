@@ -1,4 +1,4 @@
-import { fetchPredictionsByUserIdStub, predictStub } from 'datasource/predictionApi'
+import { fetchPredictionsByUser, predict } from 'datasource/predictionApi'
 export const PRED_RETR_BY_USER = "PRED_RETR_BY_USER"
 export const PRED_RETR_BY_USER_SUCCESS = "PRED_RETR_BY_USER_SUCCESS"
 export const PRED_MAKE = "PRED_MAKE"
@@ -18,7 +18,7 @@ export const retrievePredictionsByUserId = (userId) => {
             type: PRED_RETR_BY_USER,
             userId
         });
-        return fetchPredictionsByUserIdStub().then(predictions => {
+        return fetchPredictionsByUser(userId).then(predictions => {
             dispatch({
                 type: PRED_RETR_BY_USER_SUCCESS,
                 predictions
@@ -34,7 +34,7 @@ export const makePrediction = (userId, match_name, prediction) => {
             userId,
             prediction
         });
-        return predictStub(userId, match_name, prediction).then(prediction => {
+        return predict(userId, match_name, prediction).then(prediction => {
             dispatch({
                 type: PRED_MAKE_SUCCESS,
                 prediction
