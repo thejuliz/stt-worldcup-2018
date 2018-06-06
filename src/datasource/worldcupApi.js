@@ -18,26 +18,17 @@ const processGroupInfo = (teams, groups) => {
         groups[groupId].matches.forEach((match) => {
             const homeTeamId = match.home_team;
             const homeTeam = teams.find(x => x.id === homeTeamId);
-            match.home_team_info = homeTeam || createDummyTeamForDisplay();
+            match.home_team_info = homeTeam || createDummyTeamForDisplay(homeTeamId);
             
-
             const awayTeamId = match.away_team;
             const awayTeam = teams.find(x => x.id === awayTeamId);
-            match.away_team_info = awayTeam || createDummyTeamForDisplay();
+            match.away_team_info = awayTeam || createDummyTeamForDisplay(awayTeamId);
             
-            
-            const homeTeamIndex = teams.findIndex((team) => {
-                return team.teamId == homeTeamId;
-            });
-
-            const awayTeamIndex = teams.findIndex((team) => {
-                return team.teamId == awayTeamId;
-            });
-
             if (homeTeam) 
                 createOrUpdateTeams(groups[groupId], homeTeam, match.finished, match.home_team_result, match.away_team_result);
             if (awayTeam)
                 createOrUpdateTeams(groups[groupId], awayTeam, match.finished, match.away_team_result, match.home_team_result);
+            match.pwinner = getPredictionResult(match);
         });
         groups[groupId].teams = groups[groupId].teams.sort(compareFixtures);
     });
@@ -56,7 +47,7 @@ const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
             if (result > againstResult) {
                 groupTeam.win += 1;
                 groupTeam.points += 3;
-            } else if (result == againstResult) {
+            } else if (result === againstResult) {
                 groupTeam.draw += 1;
                 groupTeam.points += 1;
             } else if (result < againstResult) groupTeam.lose += 1;
@@ -78,8 +69,19 @@ const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
         });
     }
 }
-const createDummyTeamForDisplay = () => ({
-    name: 'TBA',
+const getPredictionResult = (match) => {
+    if(!match.finished) return null;
+    const home_score = match.home_result;
+    const away_score = match.away_result;
+    if(match.home_penalty || match.away_penalty) {
+        return home_score + match.home_penalty > away_score + match.away_penalty ? "homep" : "awayp";
+    }
+    if(home_score > away_score) return "home";
+    else if(home_score < away_score) return "away";
+    return "draw";
+}
+const createDummyTeamForDisplay = (awayTeamId) => ({
+    name: 'Winner of #'+awayTeamId,
     emojiString: '\u2754'
 });
 

@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { Grid, Row, Col, Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import TeamLabel from 'components/TeamLabel';
 import DateLabel from 'components/DateLabel';
 import PredictionButton from 'components/PredictionButton'
+import './KnockoutMatchup.css';
+
 class KnockoutMatchup extends React.Component {
     render() {
         const { match, round } = this.props;
         const { home_team_info, away_team_info, home_result, away_result } = match;
 
         return (
-            <div>
+            <div className="knockout-matchup">
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
                             <th colSpan='3'>
-                                {round}
+                                <div>
+                                    {round}
+                                    <span className="match-name">#{match.name}</span>
+                                </div>
                                 <div>
                                 <DateLabel className='small' date={match.date} />
                                 </div>

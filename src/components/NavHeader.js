@@ -12,7 +12,12 @@ class NavHeader extends React.Component {
                         <a href="#home">FIFA World Cup 2018</a>
                     </Navbar.Brand>
                 </Navbar.Header>
+                { this.props.authenticated && 
                 <Nav>
+                    <NavItem
+                        href="/Fixtures"
+                        onClick={(e) => {e.preventDefault();this.props.redirect('/Fixtures')}}
+                    >All Fixtures</NavItem>
                     <NavItem
                         href="/Qualifier"
                         onClick={(e) => {e.preventDefault(); this.props.redirect('/Qualifier')}}
@@ -22,15 +27,30 @@ class NavHeader extends React.Component {
                         onClick={(e) => {e.preventDefault(); this.props.redirect('/Knockout')}}
                     >Knockout Round</NavItem>
                     <NavItem
-                        href="/Fixtures"
-                        onClick={(e) => {e.preventDefault();this.props.redirect('/Fixtures')}}
-                    >All Fixtures</NavItem>
+                        href="/Result"
+                        onClick={(e) => {e.preventDefault();this.props.redirect('/Result')}}
+                    >Result</NavItem>
                 </Nav>
+                }
+                { this.props.authenticated && 
+                <Navbar.Text pullRight>Logged In: <b>{this.props.username}</b></Navbar.Text>
+                }
+                
+                 
             </Navbar>
         )
     }
 }
-const mapStateToProps = (state, props) => ({})
+
+NavHeader.propTypes = {
+    authenticated: PropTypes.bool,
+    username: PropTypes.string,
+    redirect: PropTypes.func.isRequired
+}
+const mapStateToProps = (state, props) => ({
+    authenticated: state.user.authenticated,
+    username: state.user.username
+})
 const mapDispatchToProps = dispatch => ({
     redirect: (path) => {
         dispatch(push(path))

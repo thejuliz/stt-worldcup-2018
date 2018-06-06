@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Row, Col, FormControl, FormGroup, ControlLabel, HelpBlock, Button } from 'react-bootstrap' 
+import { Grid, Row, Col, FormControl, FormGroup, ControlLabel, HelpBlock, Button, InputGroup } from 'react-bootstrap' 
 
-const FieldGroup = ({ id, label, help, ...props }) => 
+const FieldGroup = ({ id, label, help, addon, ...props }) => 
     (
       <FormGroup controlId={id}>
         <ControlLabel>{label}</ControlLabel>
+        <InputGroup>
+        <InputGroup.Addon>{addon}</InputGroup.Addon>
         <FormControl {...props} />
         {help && <HelpBlock>{help}</HelpBlock>}
+        </InputGroup>
       </FormGroup>
     );
 
@@ -51,30 +54,32 @@ class LoginForm extends React.Component {
             <form>
             <Grid>
                 <Row>
-                    <Col mdOffset={3} md={3}>
+                    <Col mdOffset={4} md={4}>
                     <FieldGroup
                     id="username"
                     type="text"
                     label="Username"
-                    placeholder="Enter email@set.or.th"
+                    addon="INSET/"
+                    placeholder="Enter Username"
                     onChange={this.handleUsernameChange}
                     />
                     </Col>
 
                 </Row>
                 <Row>
-                    <Col mdOffset={3} md={3}>
+                    <Col mdOffset={4} md={4}>
                     <FieldGroup
                     id="password"
                     type="password"
                     label="Password"
-                    placeholder="Enter password"
+                    addon={(<span>&nbsp;&nbsp;-&nbsp;<span class="glyphicon glyphicon-lock"></span>&nbsp;-&nbsp;</span>)}
+                    placeholder="Enter Password"
                     onChange={this.handlePasswordChange}
                     />
                     </Col>
                 </Row>
                 <Row>
-                    <Col mdOffset={3} md={3} className='text-center'>
+                    <Col mdOffset={4} md={4} className='text-center'>
                         <Button 
                             type="submit"
                             onClick={this.doLogin}

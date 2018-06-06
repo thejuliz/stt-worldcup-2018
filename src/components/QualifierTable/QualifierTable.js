@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Button } from 'react-bootstrap'
+import classNames from 'classnames'
 import GroupMatchesModal from './components/GroupMatchesModal';
 import TeamLabel from 'components/TeamLabel';
 import './QualifierTable.css'
@@ -58,8 +59,8 @@ class QualifierTable extends React.Component {
     renderTeamInGroup() {
         return (
             <tbody>
-            { this.props.group.teams.map((result)=> {
-                return (<tr>
+            { this.props.group.teams.map((result, index)=> {
+                return (<tr key={result.name} className={classNames({first: index === 0, second: index === 1})}>
                     <td><TeamLabel team={result} /></td>
                     <td>{result.played}</td>
                     <td>{result.win}</td>

@@ -3,7 +3,6 @@ import {
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FAILED
  } from 'actions/user'
-import update from 'immutability-helper'
 
 const initialState = {
     username: undefined,

@@ -18,10 +18,10 @@ class GroupMatchesModal extends React.Component {
                 bsSize="lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-sm">{this.props.groupId}</Modal.Title>
+                    <Modal.Title id="contained-modal-title-sm">{this.props.group.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4>Wrapped Text</h4>
+                    <h4 className="text-center">Fixture</h4>
                     <MatchList matches={this.props.matches} />
                 </Modal.Body>
                 <Modal.Footer>
@@ -34,6 +34,7 @@ class GroupMatchesModal extends React.Component {
 
 GroupMatchesModal.propTypes = {
     isShow: PropTypes.bool.isRequired,
+    group: PropTypes.object,
     matches: PropTypes.array
 }
 GroupMatchesModal.defaultProps = {

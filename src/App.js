@@ -1,13 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { compose } from 'redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
 import createHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
 
-import { ConnectedRouter, routerReducer, routerMiddleware, push, syncHistoryWithStore } from 'react-router-redux'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk';
 import reducers from './reducers' // Or wherever you keep your reducers
 import CoreLayout from './layouts/CoreLayout';

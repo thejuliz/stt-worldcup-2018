@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { retrieveQualifierGroupMatches } from 'actions/qualifier'
 import GroupMatchesModal from './GroupMatchesModal';
 
 const mapStateToProps = (state, props) => {
@@ -11,9 +10,7 @@ const mapStateToProps = (state, props) => {
         //sortedTeamsWitResult: orderTeamsBasedOnResult(teams)
     });
 }
-const mapDispatchToProps = dispatch => ({
-    retrieveQualifierGroupMatches: groupId => dispatch(retrieveQualifierGroupMatches(groupId))
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
       mapStateToProps,

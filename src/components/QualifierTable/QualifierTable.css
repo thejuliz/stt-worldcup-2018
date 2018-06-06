@@ -2,6 +2,9 @@
     font-size:18px;
     font-weight:bold;
 }
-.qualifier-table .view-match-btn {
-    
+.qualifier-table tbody tr.first {
+    background-color: #80ffaa
+}
+.qualifier-table tbody tr.second {
+    background-color: #ccffdd
 }

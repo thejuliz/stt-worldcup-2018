@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'react-bootstrap'
 import AbsolutePositionContainer from '../AbsolutePositionContainer'
 import KnockoutMatchup from 'components/KnockoutMatchup'
 import './KnockoutWallchart.css';
@@ -49,15 +48,15 @@ class KnockoutWallchart extends React.Component {
                         width="200" height="80"
                     ><KnockoutMatchup round={round_8.name} match={round_8.matches[0]} /></AbsolutePositionContainer>
                     <AbsolutePositionContainer 
-                        left="250" top="500"
+                        left="1250" top="100"
                         width="200" height="80"
                     ><KnockoutMatchup round={round_8.name} match={round_8.matches[1]} /></AbsolutePositionContainer>
                     <AbsolutePositionContainer 
-                        left="1250" top="100"
+                        left="1250" top="500"
                         width="200" height="80"
                     ><KnockoutMatchup round={round_8.name} match={round_8.matches[2]} /></AbsolutePositionContainer>
                     <AbsolutePositionContainer 
-                        left="1250" top="500"
+                        left="250" top="500"
                         width="200" height="80"
                     ><KnockoutMatchup round={round_8.name} match={round_8.matches[3]} /></AbsolutePositionContainer>
                 </div>
@@ -85,51 +84,6 @@ class KnockoutWallchart extends React.Component {
                 </div>
             </div>
         )
-        // return (
-        //     <Table width={1600}>
-        //         <tr>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="7">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //         </tr>
-        //         <tr>
-        //             <td colspan="1">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="3">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="1">&nbsp;</td>
-        //         </tr>
-        //         <tr>
-        //             <td colspan="1">&nbsp;</td>
-        //             <td colspan="2">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="2">&nbsp;</td>
-        //             <td colspan="1">&nbsp;</td>
-        //         </tr>
-        //         <tr></tr>
-        //         <tr></tr>
-        //         <tr>
-        //             <td colspan="1">&nbsp;</td>
-        //             <td colspan="2">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="2">&nbsp;</td>
-        //             <td colspan="1">&nbsp;</td>
-        //         </tr>
-        //         <tr>
-        //              <td colspan="2">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="3">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="2">&nbsp;</td>
-        //         </tr>
-        //         <tr></tr>
-        //         <tr>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //             <td colspan="7">&nbsp;</td>
-        //             <td rowspan="2"><KnockoutMatchup round={round_16.name} match={round_16.matches[0]} /></td>
-        //         </tr>
-        //     </Table>
-        // )
     }
 }
 

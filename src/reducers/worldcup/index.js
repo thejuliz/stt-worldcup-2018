@@ -1,5 +1,4 @@
 import { 
-    WC_RETRIEVE_DATA,
     WC_RETRIEVE_DATA_SUCCESS
  } from 'actions/worldcup'
 import update from 'immutability-helper'

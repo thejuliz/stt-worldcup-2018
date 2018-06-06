@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap'
 import moment from 'moment'
-import Moment from 'react-moment'
 import classNames from 'classnames'
 import DateLabel from 'components/DateLabel';
 import TeamLabel from 'components/TeamLabel';
@@ -32,14 +31,26 @@ class MatchList extends React.Component {
         )
     }
     renderMatch(match) {
-        return (
-           
+        return (     
                 <Row key={match.name}>
                     <Col md={2}><DateLabel date={match.date}/></Col>
-                    <Col md={3}><TeamLabel className="pull-right" team={match.home_team_info} /></Col>
-                    
+                    <Col md={3}>
+                        <TeamLabel 
+                            className={classNames({
+                                "pull-right":true,
+                                winner: match.pwinner && match.pwinner.includes('home')
+                            })}
+                            team={match.home_team_info}
+                        />
+                    </Col>
                     <Col md={2}><div className="text-center">{match.result && match.result[0]} - {match.result && match.result[1]}</div></Col>
-                    <Col md={3}><TeamLabel team={match.away_team_info} /></Col>
+                    <Col md={3}>
+                        <TeamLabel 
+                            className={classNames({
+                                winner: match.pwinner && match.pwinner.includes('away')
+                            })}
+                            team={match.away_team_info}
+                        /></Col>
                     <Col md={2}><PredictionButton match={match} /></Col>
                 </Row>
            

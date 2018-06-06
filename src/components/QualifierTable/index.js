@@ -1,10 +1,6 @@
 import { connect } from 'react-redux'
-import { retrieveQualifierGroupInfo } from 'actions/qualifier'
 import QualifierTable from './QualifierTable';
 
-const orderTeamsBasedOnResult = (teamsWithResult) => {
-    return teamsWithResult;
-}
 const mapStateToProps = (state, props) => {
     const { groupId } = props;
     const { groups } = state.worldcup.worldCupData;
@@ -13,9 +9,7 @@ const mapStateToProps = (state, props) => {
     });
 }
 
-const mapDispatchToProps = dispatch => ({
-    retrieveQualifierGroupInfo: groupId => dispatch(retrieveQualifierGroupInfo(groupId))
-});
+const mapDispatchToProps = dispatch => ({});
 
   export default connect(
       mapStateToProps,

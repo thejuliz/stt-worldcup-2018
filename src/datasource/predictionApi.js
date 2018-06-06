@@ -1,11 +1,17 @@
+const PREDICTION_API_URL = 'https://stt-worldcup-server.herokuapp.com';
+
 export const fetchPredictions = () => {
-    return fetch('https://stt-worldcup-server.herokuapp.com/predictions').then((response) => { 
+    return fetch(PREDICTION_API_URL + '/predictions').then((response) => { 
         return response.json();
-    });
+    }).then(json => json.map(x=> ({
+        match_id: x.match_id,
+        username: x.user_id,
+        prediction: x.prediction
+    })));
 };
 
 export const fetchPredictionsByUser = (userId) => {
-    return fetch('https://stt-worldcup-server.herokuapp.com/prediction/' + userId).then((response) => { 
+    return fetch(PREDICTION_API_URL +  '/prediction/' + userId).then((response) => { 
         return response.json();
     });
 };
@@ -32,14 +38,14 @@ export const fetchPredictionsByUserIdStub = (userId) => {
 
 export const predict = (user_id, match_id, prediction) => {
     // data should be {match_id, home_result, away_result, user_id}
-    return fetch('https://stt-worldcup-server.herokuapp.com/predict', {
+    return fetch(PREDICTION_API_URL + '/predict', {
         body: JSON.stringify({
             match_id,
             prediction,
             user_id
         }), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, same-origin, *omit
+        //credentials: 'include', // include, same-origin, *omit
         headers: {
           'content-type': 'application/json'
         },
@@ -47,10 +53,7 @@ export const predict = (user_id, match_id, prediction) => {
         mode: 'cors', // no-cors, cors, *same-origin
         referrer: 'no-referrer', // *client, no-referrer
     }).then((response) => {
-        return response.json().map(x=> ({
-            match_name: x.match_id,
-            prediction: x.prediction
-        }));
+        return response.json();
     });
 }
 

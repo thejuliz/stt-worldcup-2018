@@ -6,6 +6,7 @@ import Main from './Main';
 import Qualifier from './Qualifier';
 import Knockout from './Knockout';
 import Fixture from './Fixture';
+import Result from './Result';
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -24,6 +25,7 @@ class Routes extends React.Component {
                 <PrivateRoute authenticated={this.props.authenticated} path="/Qualifier" component={Qualifier}/>
                 <PrivateRoute authenticated={this.props.authenticated} path="/Knockout" component={Knockout}/>
                 <PrivateRoute authenticated={this.props.authenticated} path="/Fixtures" component={Fixture}/>
+                <PrivateRoute authenticated={this.props.authenticated} path="/Result" component={Result}/>
             </Switch>
         );
     }

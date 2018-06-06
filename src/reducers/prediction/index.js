@@ -1,12 +1,12 @@
 import { 
-    PRED_RETR_BY_USER,
     PRED_RETR_BY_USER_SUCCESS,
-    PRED_MAKE_SUCCESS
+    PRED_MAKE_SUCCESS,
+    PRED_RETR_SUCCESS
  } from 'actions/prediction'
 import update from 'immutability-helper'
 
 const initialState = {
-    predictions: [],
+    allPredictions: [],
     myPredictions: []
 }
 
@@ -41,7 +41,11 @@ const predictionReducer = (state = initialState, action) => {
                     }]
                 }
             });
-                
+        case PRED_RETR_SUCCESS:
+            return {
+                ...state, 
+                allPredictions: action.predictions
+            };    
         default:
             return state
     }

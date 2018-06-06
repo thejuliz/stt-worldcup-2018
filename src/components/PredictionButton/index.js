@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { retrievePredictionByUserId } from 'actions/prediction'
 import PredictionButton from './PredictionButton';
 
 const mapStateToProps = (state, props) => {
