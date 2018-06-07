@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Navbar, NavItem, Nav } from 'react-bootstrap'
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 import { push } from 'react-router-redux'
+import { logout } from 'actions/user'
 class NavHeader extends React.Component {
     render() {
         return (
@@ -32,9 +33,15 @@ class NavHeader extends React.Component {
                     >Result</NavItem>
                 </Nav>
                 }
-                { this.props.authenticated && 
-                <Navbar.Text pullRight>Logged In: <b>{this.props.username}</b></Navbar.Text>
+                { this.props.authenticated &&
+                <Nav pullRight>
+                    <NavDropdown title={<span>Logged In: <b>{this.props.username}</b></span>} id="basic-nav-dropdown">
+                        <MenuItem divider />
+                        <MenuItem onClick={(e) => {e.preventDefault(); this.props.logout()}}>Logout</MenuItem>
+                    </NavDropdown> 
+                </Nav>
                 }
+                
                 
                  
             </Navbar>
@@ -45,7 +52,8 @@ class NavHeader extends React.Component {
 NavHeader.propTypes = {
     authenticated: PropTypes.bool,
     username: PropTypes.string,
-    redirect: PropTypes.func.isRequired
+    redirect: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired
 }
 const mapStateToProps = (state, props) => ({
     authenticated: state.user.authenticated,
@@ -54,7 +62,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
     redirect: (path) => {
         dispatch(push(path))
-    }
+    },
+    logout: () => dispatch(logout())
 });
 
 export default connect(

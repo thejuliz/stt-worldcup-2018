@@ -43,7 +43,7 @@ class MatchList extends React.Component {
                             team={match.home_team_info}
                         />
                     </Col>
-                    <Col md={2}><div className="text-center">{match.result && match.result[0]} - {match.result && match.result[1]}</div></Col>
+                    <Col md={2}><div className="text-center">{match.home_result || ''} {match.home_penalty ? `(${match.home_penalty})`: ''} - {match.away_result || ''}{match.away_penalty ? `(${match.away_penalty})`: ''}</div></Col>
                     <Col md={3}>
                         <TeamLabel 
                             className={classNames({

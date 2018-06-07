@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Row, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import classNames from 'classnames'
 import moment from 'moment'
 import { PredictionType } from 'actions/prediction'
@@ -36,34 +36,32 @@ class PredictionButton extends React.Component {
         const { currentPrediction, match } = this.props
         return (
             <div className="prediction-button">
-                <Row>
-                    <Col md={12} className='text-center'>
-                        { currentPrediction &&
-                            <Button
-                                bsSize='sm'
-                                className={classNames('predicted', 'form-control')}
-                                onClick={this.togglePopover}
-                                disabled={isMatchStarted(match)}
-                            >
-                            {this.renderPredictionLabel()}{' '}
-                            { match.pwinner && 
-                                <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
-                            }</Button>
-                        }
-                        { !currentPrediction && 
-                            <Button
-                                bsSize='sm'
-                                className={classNames('form-control')}
-                                onClick={this.togglePopover}
-                                disabled={isMatchStarted(match)}
-                            >Make Prediction{' '}
-                            { match.pwinner && 
-                                <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
-                            }</Button>
-                        }
-                        
-                    </Col>
-                </Row>
+                <div className='text-center'>
+                    { currentPrediction &&
+                        <Button
+                            bsSize='sm'
+                            className={classNames('predicted', 'form-control')}
+                            onClick={this.togglePopover}
+                            disabled={isMatchStarted(match)}
+                        >
+                        {this.renderPredictionLabel()}{' '}
+                        { match.pwinner && 
+                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
+                        }</Button>
+                    }
+                    { !currentPrediction && 
+                        <Button
+                            bsSize='sm'
+                            className={classNames('form-control')}
+                            onClick={this.togglePopover}
+                            disabled={isMatchStarted(match)}
+                        >Make Prediction{' '}
+                        { match.pwinner && 
+                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
+                        }</Button>
+                    }
+                    
+                </div>
                 <PredictionPopover
                     match={this.props.match} 
                     currentPrediction={this.props.currentPrediction}

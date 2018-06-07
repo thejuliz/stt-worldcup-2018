@@ -80,8 +80,8 @@ const getPredictionResult = (match) => {
     else if(home_score < away_score) return "away";
     return "draw";
 }
-const createDummyTeamForDisplay = (awayTeamId) => ({
-    name: 'Winner of #'+awayTeamId,
+const createDummyTeamForDisplay = (teamId) => ({
+    name: isNaN(teamId) ? teamId.split('_').map(jsUcfirst).join(' ') : 'Winner #'+teamId,
     emojiString: '\u2754'
 });
 
@@ -94,3 +94,4 @@ const compareFixtures = (a, b) => {
         return a.name.localeCompare(b.name);
     }
 }
+const jsUcfirst = (string) => string.charAt(0).toUpperCase() + string.slice(1);

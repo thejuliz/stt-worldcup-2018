@@ -32,10 +32,12 @@ const store = createStore(
 //store.dispatch(push('/Fixtures'))
 
 export default () => (
-  <Provider store={store}>
-    { /* ConnectedRouter will use the store from Provider automatically */ }
-    <ConnectedRouter history={history}>
-      <CoreLayout/>
-    </ConnectedRouter>
-  </Provider>
+  <div className="App">
+    <Provider store={store}>
+      { /* ConnectedRouter will use the store from Provider automatically */ }
+      <ConnectedRouter history={history}>
+        <CoreLayout/>
+      </ConnectedRouter>
+    </Provider>
+  </div>
 )

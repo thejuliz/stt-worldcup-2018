@@ -1,4 +1,5 @@
 const AUTH_API_URL = 'http://10.23.62.34:2018/auth';
+//const AUTH_API_URL = 'http://localhost:8080';
 
 export const fetchUsers = () => {
     return fetch('https://stt-worldcup-server.herokuapp.com/users').then((response) => { 
@@ -43,6 +44,11 @@ export const validateSession = () => {
     });
 }
 
+export const logout = () => {
+    return fetch(AUTH_API_URL + '/user/logout', {
+        credentials: 'include'
+    });
+}
 
 function later(delay, value) {
     return new Promise(function(resolve) {

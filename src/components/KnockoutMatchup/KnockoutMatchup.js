@@ -9,7 +9,7 @@ import './KnockoutMatchup.css';
 class KnockoutMatchup extends React.Component {
     render() {
         const { match, round } = this.props;
-        const { home_team_info, away_team_info, home_result, away_result } = match;
+        const { home_team_info, away_team_info, home_result, away_result, home_penalty, away_penalty } = match;
 
         return (
             <div className="knockout-matchup">
@@ -30,11 +30,11 @@ class KnockoutMatchup extends React.Component {
                     <tbody>
                         <tr>
                             <td colSpan='2'> <TeamLabel team={home_team_info} /></td>
-                            <td><div className='pull-right'>{home_result || '-'}</div></td>
+                            <td><div className='pull-right'>{home_result || '-'} {home_penalty ? `(${home_penalty})`: ''}</div></td>
                         </tr>
                         <tr>
                             <td colSpan='2'> <TeamLabel team={away_team_info} /></td>
-                            <td><div className='pull-right'>{away_result || '-'}</div></td>
+                            <td><div className='pull-right'>{away_result || '-'} {away_penalty ? `(${away_penalty})`: ''}</div></td>
                         </tr>
                     </tbody>
                     <tfoot>

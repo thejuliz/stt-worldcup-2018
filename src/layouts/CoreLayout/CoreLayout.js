@@ -4,7 +4,7 @@ import Routes from '../../routes'
 
 class CoreLayout extends React.Component {
     componentWillReceiveProps(nextProps) {
-        if (this.props !== nextProps.authenticated && nextProps.authenticated) {
+        if (this.props.authenticated !== nextProps.authenticated && nextProps.authenticated) {
             this.props.retrievePredictionsByUserId(nextProps.username);
         }
     }

@@ -31,7 +31,6 @@ class LoginForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { authenticated } = nextProps;
         if(authenticated) {
-            console.log(authenticated);
             this.props.redirect("/Fixtures");
         }
     }
@@ -72,7 +71,7 @@ class LoginForm extends React.Component {
                     id="password"
                     type="password"
                     label="Password"
-                    addon={(<span>&nbsp;&nbsp;-&nbsp;<span class="glyphicon glyphicon-lock"></span>&nbsp;-&nbsp;</span>)}
+                    addon={(<span>&nbsp;&nbsp;-&nbsp;<span className="glyphicon glyphicon-lock"></span>&nbsp;-&nbsp;</span>)}
                     placeholder="Enter Password"
                     onChange={this.handlePasswordChange}
                     />

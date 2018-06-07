@@ -18,10 +18,9 @@ class GroupMatchesModal extends React.Component {
                 bsSize="lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-sm">{this.props.group.name}</Modal.Title>
+                    <Modal.Title id="contained-modal-title-sm">{this.props.group.name} - Fixture</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4 className="text-center">Fixture</h4>
                     <MatchList matches={this.props.matches} />
                 </Modal.Body>
                 <Modal.Footer>
