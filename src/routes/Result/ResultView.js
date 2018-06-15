@@ -6,7 +6,7 @@ class ResultView extends React.Component {
     render() {
         return (
             <div className="container">
-                <PageTitle>Prediction Result</PageTitle>
+                <PageTitle>Leaderboard</PageTitle>
                 <Leaderboard />
             </div>
         )

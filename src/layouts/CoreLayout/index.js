@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { withRouter } from 'react-router'
 import { retrieveWorldCupData } from 'actions/worldcup'
-import { retrievePredictionsByUserId } from 'actions/prediction'
+import { retrievePredictionsByUserId, retrievePredictions } from 'actions/prediction'
 import CoreLayout from './CoreLayout'
 
 const mapStateToProps = (state) => ({
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     retrieveWorldCupData: () => dispatch(retrieveWorldCupData()),
     retrievePredictionsByUserId: (userId) => dispatch(retrievePredictionsByUserId(userId)),
+    retrievePredictions: () => dispatch(retrievePredictions()),
     redirect: (path) => {
         dispatch(push(path))
     }

@@ -1,4 +1,5 @@
-const AUTH_API_URL = 'http://10.23.62.34:2018/auth';
+import qs from 'querystring'
+const AUTH_API_URL = './auth';
 //const AUTH_API_URL = 'http://localhost:8080';
 
 export const fetchUsers = () => {
@@ -11,16 +12,16 @@ export const loginWithPassword = (username, password) => {
     if(username === 'test') {
         return later(200, { username: 'test' });
     }
-    return fetch(AUTH_API_URL + '/login', {
-        body: JSON.stringify({
+    return fetch(AUTH_API_URL + '/login.jsp', {
+        body:  qs.stringify({
             username,
             password
         }), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'include', // include, same-origin, *omit
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            // 'Accept': 'application/json',
+            "Content-Type": "application/x-www-form-urlencoded"
         },
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, cors, *same-origin
@@ -34,7 +35,7 @@ export const loginWithPassword = (username, password) => {
 }
 
 export const validateSession = () => {
-    return fetch(AUTH_API_URL + '/user/validate', {
+    return fetch(AUTH_API_URL + '/validate.jsp', {
         credentials: 'include'
     }).then((response) => { 
         if (!response.ok) {
@@ -45,7 +46,7 @@ export const validateSession = () => {
 }
 
 export const logout = () => {
-    return fetch(AUTH_API_URL + '/user/logout', {
+    return fetch(AUTH_API_URL + '/logout.jsp', {
         credentials: 'include'
     });
 }

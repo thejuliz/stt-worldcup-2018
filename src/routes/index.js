@@ -25,7 +25,7 @@ class Routes extends React.Component {
                 <PrivateRoute authenticated={this.props.authenticated} path="/Qualifier" component={Qualifier}/>
                 <PrivateRoute authenticated={this.props.authenticated} path="/Knockout" component={Knockout}/>
                 <PrivateRoute authenticated={this.props.authenticated} path="/Fixtures" component={Fixture}/>
-                <PrivateRoute authenticated={this.props.authenticated} path="/Result" component={Result}/>
+                <PrivateRoute authenticated={this.props.authenticated} path="/Leaderboard" component={Result}/>
             </Switch>
         );
     }

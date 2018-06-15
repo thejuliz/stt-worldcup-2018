@@ -18,11 +18,11 @@ const processGroupInfo = (teams, groups) => {
         groups[groupId].matches.forEach((match) => {
             const homeTeamId = match.home_team;
             const homeTeam = teams.find(x => x.id === homeTeamId);
-            match.home_team_info = homeTeam || createDummyTeamForDisplay(homeTeamId);
+            match.home_team_info = homeTeam || createDummyTeamForDisplay(homeTeamId, match.type);
             
             const awayTeamId = match.away_team;
             const awayTeam = teams.find(x => x.id === awayTeamId);
-            match.away_team_info = awayTeam || createDummyTeamForDisplay(awayTeamId);
+            match.away_team_info = awayTeam || createDummyTeamForDisplay(awayTeamId, match.type);
             
             if (homeTeam) 
                 createOrUpdateTeams(groups[groupId], homeTeam, match.finished, match.home_team_result, match.away_team_result);
@@ -80,8 +80,8 @@ const getPredictionResult = (match) => {
     else if(home_score < away_score) return "away";
     return "draw";
 }
-const createDummyTeamForDisplay = (teamId) => ({
-    name: isNaN(teamId) ? teamId.split('_').map(jsUcfirst).join(' ') : 'Winner #'+teamId,
+const createDummyTeamForDisplay = (teamId, matchType) => ({
+    name: isNaN(teamId) ? teamId.split('_').map(jsUcfirst).join(' ') : jsUcfirst(matchType)+' #'+teamId,
     emojiString: '\u2754'
 });
 

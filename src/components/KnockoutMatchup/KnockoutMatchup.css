@@ -2,3 +2,7 @@
     float:right;
     opacity: 0.3
 }
+
+.knockout-matchup .winner {
+    font-weight: bold;
+}

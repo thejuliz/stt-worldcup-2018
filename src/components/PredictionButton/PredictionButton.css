@@ -8,3 +8,15 @@
 .prediction-button .btn.predicted {
     font-weight: bold
 }
+.prediction-stat .progress {
+    margin-bottom:0px;
+}
+.prediction-stat {
+    font-size:11px !important;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.popover {
+    max-width: 100%
+}

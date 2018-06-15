@@ -6,6 +6,7 @@ class CoreLayout extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.authenticated !== nextProps.authenticated && nextProps.authenticated) {
             this.props.retrievePredictionsByUserId(nextProps.username);
+            this.props.retrievePredictions();
         }
     }
     componentWillMount() {

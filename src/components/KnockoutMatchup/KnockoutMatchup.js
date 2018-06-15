@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { Table } from 'react-bootstrap';
+import classNames from 'classnames';
 import TeamLabel from 'components/TeamLabel';
 import DateLabel from 'components/DateLabel';
+import Score from 'components/Score';
 import PredictionButton from 'components/PredictionButton'
 import './KnockoutMatchup.css';
 
@@ -28,13 +30,13 @@ class KnockoutMatchup extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr className={classNames({winner: match.pwinner && match.pwinner.includes('home')})}>
                             <td colSpan='2'> <TeamLabel team={home_team_info} /></td>
-                            <td><div className='pull-right'>{home_result || '-'} {home_penalty ? `(${home_penalty})`: ''}</div></td>
+                            <td><div className='pull-right'><Score score={match.home_result} penaltyScore={match.home_penalty} pendingChar='-'/></div></td>
                         </tr>
-                        <tr>
+                        <tr className={classNames({winner: match.pwinner && match.pwinner.includes('away')})}>
                             <td colSpan='2'> <TeamLabel team={away_team_info} /></td>
-                            <td><div className='pull-right'>{away_result || '-'} {away_penalty ? `(${away_penalty})`: ''}</div></td>
+                            <td><div className='pull-right'><Score score={match.away_result} penaltyScore={match.away_penalty} pendingChar='-'/></div></td>
                         </tr>
                     </tbody>
                     <tfoot>

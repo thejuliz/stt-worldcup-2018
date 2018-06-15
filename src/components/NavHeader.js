@@ -10,7 +10,7 @@ class NavHeader extends React.Component {
             <Navbar fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#home">FIFA World Cup 2018</a>
+                        FIFA World Cup 2018
                     </Navbar.Brand>
                 </Navbar.Header>
                 { this.props.authenticated && 
@@ -28,9 +28,9 @@ class NavHeader extends React.Component {
                         onClick={(e) => {e.preventDefault(); this.props.redirect('/Knockout')}}
                     >Knockout Round</NavItem>
                     <NavItem
-                        href="/Result"
-                        onClick={(e) => {e.preventDefault();this.props.redirect('/Result')}}
-                    >Result</NavItem>
+                        href="/Leaderboard"
+                        onClick={(e) => {e.preventDefault();this.props.redirect('/Leaderboard')}}
+                    >Leaderboard</NavItem>
                 </Nav>
                 }
                 { this.props.authenticated &&

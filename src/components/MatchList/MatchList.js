@@ -5,6 +5,7 @@ import moment from 'moment'
 import classNames from 'classnames'
 import DateLabel from 'components/DateLabel';
 import TeamLabel from 'components/TeamLabel';
+import Score from 'components/Score';
 import PredictionButton from 'components/PredictionButton';
 import './MatchList.css'
 
@@ -43,7 +44,13 @@ class MatchList extends React.Component {
                             team={match.home_team_info}
                         />
                     </Col>
-                    <Col md={2}><div className="text-center">{match.home_result || ''} {match.home_penalty ? `(${match.home_penalty})`: ''} - {match.away_result || ''}{match.away_penalty ? `(${match.away_penalty})`: ''}</div></Col>
+                    <Col md={2}>
+                        <div className="text-center">
+                            <Score score={match.home_result} penaltyScore={match.home_penalty} />
+                            { ' - '}
+                            <Score score={match.away_result} penaltyScore={match.away_penalty} />
+                        </div>
+                    </Col>
                     <Col md={3}>
                         <TeamLabel 
                             className={classNames({
