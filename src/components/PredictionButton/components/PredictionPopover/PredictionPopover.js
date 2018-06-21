@@ -31,9 +31,30 @@ class PredictionPopover extends React.Component {
                     <div>
                         {this.renderPredictionStat()}
                     </div>
+                    
+                    { this.props.team_prediction && 
+                    <div className="small">
+                        <hr style={{marginTop:5,marginBottom:0}}/>
+                        <center>theerapat predicts {this.renderTheerapatPrediction()}</center>
+                        <hr style={{marginTop:0,marginBottom:5}}/>
+                    </div>
+                    }
+                    
                     <div>{this.renderPredictionOptions()}</div></Popover>
             </Overlay>
         )
+    }
+    renderTheerapatPrediction() {
+        const { home_team_info, away_team_info } = this.props.match
+        const prediction = this.props.team_prediction.prediction;
+        switch (prediction) {
+            case PredictionType.HomeWinPenalty: return (<b><TeamLabel team={home_team_info} />(ET.)</b>)
+            case PredictionType.HomeWin: return (<b><TeamLabel team={home_team_info} /></b>)
+            case PredictionType.Draw: return (<b>Draw</b>)
+            case PredictionType.AwayWin: return (<b><TeamLabel team={away_team_info} /></b>)
+            case PredictionType.AwayWinPenalty: return (<b><TeamLabel team={away_team_info} />(ET.)</b>)
+            default: return (<b>None</b>);
+        }
     }
     renderPredictionStat() {
         const { home_team_info, away_team_info } = this.props.match
@@ -72,7 +93,7 @@ class PredictionPopover extends React.Component {
         return (
             <div className="prediction-stat">
                 <Row>
-                    <Col md={5}><TeamLabel team={home_team_info} />(Pen.)</Col>
+                    <Col md={5}><TeamLabel team={home_team_info} />(ET)</Col>
                     <Col md={7}>
                         <ProgressBar bsStyle="info" now={stat.homep} />
                     </Col>
@@ -91,9 +112,9 @@ class PredictionPopover extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={5}><TeamLabel team={away_team_info} />(Pen.)</Col>
+                    <Col md={5}><TeamLabel team={away_team_info} />(ET)</Col>
                     <Col md={7}>
-                    <ProgressBar bsStyle="wawrning" now={stat.awayp} />
+                    <ProgressBar bsStyle="warning" now={stat.awayp} />
                     </Col>
                 </Row>
             </div>
@@ -129,7 +150,7 @@ class PredictionPopover extends React.Component {
                     value={PredictionType.HomeWinPenalty}
                     bsSize='xs' 
                     onClick={() => this.makePrediction(PredictionType.HomeWinPenalty)}
-                ><TeamLabel team={home_team_info} />(Pen.)</ToggleButton>
+                ><TeamLabel team={home_team_info} />(ET)</ToggleButton>
                 <ToggleButton 
                     value={PredictionType.HomeWin}
                     bsSize='xs' 
@@ -144,7 +165,7 @@ class PredictionPopover extends React.Component {
                     value={PredictionType.AwayWinPenalty}
                     bsSize='xs' 
                     onClick={() => this.makePrediction(PredictionType.AwayWinPenalty)}
-                ><TeamLabel team={away_team_info} />(Pen.)</ToggleButton>
+                ><TeamLabel team={away_team_info} />(ET)</ToggleButton>
             </ToggleButtonGroup>
         )
     }

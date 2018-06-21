@@ -5,6 +5,17 @@ import classNames from 'classnames'
 import GroupMatchesModal from './components/GroupMatchesModal';
 import TeamLabel from 'components/TeamLabel';
 import './QualifierTable.css'
+
+const compareByPoints = (a,b) => {
+    if (b.points>a.points) return true;
+    else if(b.points === a.points){
+        if(b.goalFor - b.goalAgainst > a.goalFor - a.goalAgainst) return true;
+        else if (b.goalFor - b.goalAgainst === a.goalFor - a.goalAgainst){
+           return b.goalFor - a.goalFor; 
+        }
+    }
+    return false;
+}
 class QualifierTable extends React.Component {
     constructor(props) {
         super(props)
@@ -59,7 +70,7 @@ class QualifierTable extends React.Component {
     renderTeamInGroup() {
         return (
             <tbody>
-            { this.props.group.teams.map((result, index)=> {
+            { this.props.group.teams.sort(compareByPoints).map((result, index)=> {
                 return (<tr key={result.name} className={classNames({first: index === 0, second: index === 1})}>
                     <td><TeamLabel team={result} /></td>
                     <td>{result.played}</td>

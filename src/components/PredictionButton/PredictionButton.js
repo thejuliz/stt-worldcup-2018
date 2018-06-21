@@ -46,7 +46,7 @@ class PredictionButton extends React.Component {
                         >
                         {this.renderPredictionLabel()}{' '}
                         { match.pwinner && 
-                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
+                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
                         }</Button>
                     }
                     { !currentPrediction && 
@@ -57,7 +57,7 @@ class PredictionButton extends React.Component {
                             disabled={isMatchStarted(match)}
                         >Make Prediction{' '}
                         { match.pwinner && 
-                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
+                            <span>{match.pwinner === currentPrediction ? (<span className="glyphicon glyphicon-ok" aria-hidden="true"></span>): <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>}</span>
                         }</Button>
                     }
                     

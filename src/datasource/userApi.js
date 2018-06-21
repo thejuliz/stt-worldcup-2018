@@ -18,13 +18,13 @@ export const loginWithPassword = (username, password) => {
             password
         }), // must match 'Content-Type' header
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'include', // include, same-origin, *omit
+        credentials: 'same-origin', // include, same-origin, *omit
         headers: {
             // 'Accept': 'application/json',
             "Content-Type": "application/x-www-form-urlencoded"
         },
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, cors, *same-origin
+        //mode: 'cors', // no-cors, cors, *same-origin
         referrer: 'no-referrer', // *client, no-referrer
     }).then((response) => {
         if (!response.ok) {
@@ -36,7 +36,8 @@ export const loginWithPassword = (username, password) => {
 
 export const validateSession = () => {
     return fetch(AUTH_API_URL + '/validate.jsp', {
-        credentials: 'include'
+        credentials: 'same-origin',
+        //mode: 'cors'
     }).then((response) => { 
         if (!response.ok) {
             throw Error(response.statusText);
@@ -47,7 +48,7 @@ export const validateSession = () => {
 
 export const logout = () => {
     return fetch(AUTH_API_URL + '/logout.jsp', {
-        credentials: 'include'
+        credentials: 'same-origin',
     });
 }
 

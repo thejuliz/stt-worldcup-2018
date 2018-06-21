@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Table } from 'react-bootstrap'
+import { Table, Col, Row } from 'react-bootstrap'
 
 // to be loaded from db(per user)
 const MARGIN = {
@@ -31,10 +31,10 @@ const MARGIN = {
     "teerapat":30,
     "jiraphon":30,
     "nattapongph":40,
+    "oranut":40,
     "non":50,
 
     /* qc */
-    "monkaween": 20,
     "supanuch": 30,
     "phuridej": 30,
     "kirkkiat": 50,
@@ -50,10 +50,12 @@ const MARGIN = {
 
     /* outsource */
     "niravitw": 40,
+    "monkaween": 20,
     
     /* intern */
     "siraphatg": 10,
-    "somchitk": 10
+    "somchitk": 10,
+    "chawitu": 10
 
 };
 const processPredictions = (predictions, matches) => {
@@ -95,49 +97,131 @@ const processPredictions = (predictions, matches) => {
     });
 }
 
+const sortByAmount = (isAscending) => (user1, user2) => {
+    if(user1.amount > user2.amount) return isAscending ? 1 : -1;
+    if(user1.amount < user2.amount) return isAscending ? -1 :1;
+    else return user2.predicted - user1.predicted;
+}
+const sortByWrong = (isAscending) => (user1, user2) => {
+    if(user1.wrong > user2.wrong) return isAscending ? 1 : -1;
+    if(user1.wrong < user2.wrong) return isAscending ? -1 : 1;
+    else return user2.predicted - user1.predicted;
+}
+const sortByCorrect = (isAscending) => (user1, user2) => {
+    if(user1.correct > user2.correct) return isAscending ? 1 : -1;
+    if(user1.correct < user2.correct) return isAscending ? -1 : 1;
+    else return user2.predicted - user1.predicted;
+}
 class Leaderboard extends React.Component {
     constructor(props) {
         super(props);
+        const processed = processPredictions(props.predictions, props.matches)
+        this.toggleSortAmount = this.toggleSortAmount.bind(this);
+        this.toggleSortCorrect = this.toggleSortCorrect.bind(this);
+        this.toggleSortWrong = this.toggleSortWrong.bind(this);
         this.state = {
-            stats:processPredictions(props.predictions, props.matches)
+            stats: processed,
+            curSort: 'amount',
+            sortFn: sortByAmount(false),
+            isAscending: false,
+            total: processed.reduce((amt, x) => amt + x.amount, 0)
         }
     }
     componentDidMount() {
         this.props.retrievePredictions();
     }
     componentWillReceiveProps(nextProps) {
+        const processed = processPredictions(nextProps.predictions, nextProps.matches)
         this.setState({
-            stats: processPredictions(nextProps.predictions, nextProps.matches)
+            stats: processed,
+            total: processed.reduce((amt, x) => amt + x.amount, 0)
         });
     }
-
+    toggleSortAmount() {
+        const { isAscending, curSort } = this.state;
+        const nextAscending = curSort === 'amount' ? !isAscending: isAscending;
+        this.setState({
+            curSort: 'amount',
+            isAscending: nextAscending,
+            sortFn: sortByAmount(nextAscending)
+        });
+    }
+    toggleSortWrong() {
+        const { isAscending, curSort } = this.state;
+        const nextAscending = curSort === 'wrong' ? !isAscending: isAscending;
+        this.setState({
+            curSort: 'wrong',
+            isAscending: nextAscending,
+            sortFn: sortByWrong(nextAscending)
+        });
+    }
+    toggleSortCorrect() {
+        const { isAscending, curSort } = this.state;
+        const nextAscending = curSort === 'correct' ? !isAscending: isAscending;
+        this.setState({
+            curSort: 'correct',
+            isAscending: nextAscending,
+            sortFn: sortByCorrect(nextAscending)
+        });
+    }
     render() {
         return (
-            <Table hover striped>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Predicted (out of 64)</th>
-                        <th>Pending</th>
-                        <th>Correct</th>
-                        <th>Wrong</th>
-                        <th>$$$</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { this.state.stats.map((stat) => (
-                        <tr key={stat.username}>
-                            <td>{stat.username}</td>
-                            <td>{stat.predicted}</td>
-                            <td>{stat.pending}</td>
-                            <td>{stat.correct}</td>
-                            <td>{stat.wrong}</td>
-                            <td>{stat.amount}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+            <Row>
+                <Col md={12} className="text-center">
+                    <h3>ค่าเสียหายปัจจุบัน: <b>{ this.state.total }</b></h3>
+                </Col>
+                <Col md={12}>
+                    <Table hover striped>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Predicted (out of 64)</th>
+                                <th>Pending</th>
+                                <th><a onClick={(e) => {
+                                    e.stopPropagation();
+                                    this.toggleSortCorrect()
+                                }}>Correct {this.renderDirButton('correct')}</a></th>
+                                <th><a onClick={(e) => {
+                                    e.stopPropagation();
+                                    this.toggleSortWrong()
+                                }}>Wrong {this.renderDirButton('wrong')}</a></th>
+                                <th><a onClick={(e) => {
+                                    e.stopPropagation();
+                                    this.toggleSortAmount()
+                                }}>$$$ {this.renderDirButton('amount')}</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.state.stats.sort(this.state.sortFn).map((stat) => (
+                                <tr key={stat.username}>
+                                    <td>{stat.username}</td>
+                                    <td>{stat.predicted}</td>
+                                    <td>{stat.pending}</td>
+                                    <td>{stat.correct}</td>
+                                    <td>{stat.wrong}</td>
+                                    <td>{stat.amount}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan={6}></td>
+                            </tr>
+                        </tfoot>
+                    </Table>
+                </Col>
+            </Row>
         )
+    }
+    renderDirButton(sortType) {
+        const { curSort, isAscending } = this.state;
+        if(sortType === curSort) {
+            if(isAscending)
+                return <span className="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span>
+            else 
+                return <span className="glyphicon glyphicon-sort-by-order-alt" aria-hidden="true"></span>
+        }
+        return null;
     }
 }
 

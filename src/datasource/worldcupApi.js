@@ -23,12 +23,12 @@ const processGroupInfo = (teams, groups) => {
             const awayTeamId = match.away_team;
             const awayTeam = teams.find(x => x.id === awayTeamId);
             match.away_team_info = awayTeam || createDummyTeamForDisplay(awayTeamId, match.type);
-            
-            if (homeTeam) 
-                createOrUpdateTeams(groups[groupId], homeTeam, match.finished, match.home_team_result, match.away_team_result);
-            if (awayTeam)
-                createOrUpdateTeams(groups[groupId], awayTeam, match.finished, match.away_team_result, match.home_team_result);
             match.pwinner = getPredictionResult(match);
+            if (homeTeam) 
+                createOrUpdateTeams(groups[groupId], homeTeam, match.finished, match.home_result, match.away_result);
+            if (awayTeam)
+                createOrUpdateTeams(groups[groupId], awayTeam, match.finished, match.away_result, match.home_result);
+            
         });
         groups[groupId].teams = groups[groupId].teams.sort(compareFixtures);
     });
@@ -38,26 +38,9 @@ const processGroupInfo = (teams, groups) => {
 
 
 const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
-    const groupTeam = group.teams.find(x => x.id === team.id);
-    if (groupTeam) {
-        // Update
-        if (finished) groupTeam.played += 1;
-
-        if (result) {
-            if (result > againstResult) {
-                groupTeam.win += 1;
-                groupTeam.points += 3;
-            } else if (result === againstResult) {
-                groupTeam.draw += 1;
-                groupTeam.points += 1;
-            } else if (result < againstResult) groupTeam.lose += 1;
-
-            groupTeam.goalFor += result;
-            groupTeam.goalAgainst += againstResult;
-        }
-    } else {
-        // Create
-        group.teams.push({
+    let groupTeam = group.teams.find(x => x.id === team.id);
+    if (!groupTeam) {
+        groupTeam = {
             ...team,
             played: 0,
             win: 0,
@@ -66,7 +49,22 @@ const createOrUpdateTeams = (group, team, finished, result, againstResult ) => {
             goalFor: 0,
             goalAgainst: 0,
             points: 0
-        });
+        };
+        group.teams.push(groupTeam);
+    };
+    // Update
+    if (finished) { groupTeam.played += 1;
+        if (result > againstResult) {
+            groupTeam.win += 1;
+            groupTeam.points += 3;
+        } else if (result === againstResult) {
+            groupTeam.draw += 1;
+            groupTeam.points += 1;
+        } else if (result < againstResult) groupTeam.lose += 1;
+
+        groupTeam.goalFor += result;
+        groupTeam.goalAgainst += againstResult;
+    
     }
 }
 const getPredictionResult = (match) => {
